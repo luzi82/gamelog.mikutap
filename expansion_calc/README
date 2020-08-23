@@ -1,0 +1,5 @@
+require tesseract 4.1.1
+4.0 will not work
+
+sudo apt install tesseract-ocr
+sudo apt install libtesseract-dev

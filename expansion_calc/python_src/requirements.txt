@@ -1,0 +1,4 @@
+futsu
+numpy
+pillow
+pytesseract
