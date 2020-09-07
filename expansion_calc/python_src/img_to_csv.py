@@ -8,6 +8,9 @@ import pytesseract
 dirname = os.path.dirname
 PROJECT_ROOT = dirname(dirname(dirname(os.path.abspath(__file__))))
 
+#IMG_FOLDER_PATH = os.path.join(PROJECT_ROOT,'expansion_calc','input')
+IMG_FOLDER_PATH = '/home/luzi82/storage/Dropbox/tmp/mikutap/'
+
 OUTPUT_FOLDER_PATH = os.path.join(PROJECT_ROOT,'expansion_calc','output')
 futsu.fs.reset_dir(OUTPUT_FOLDER_PATH)
 
@@ -32,10 +35,10 @@ def save_img(fn,v_np_hwc):
     v_img.save(fn,'PNG')
 
 # get icon
-icon_folder_path = os.path.join(PROJECT_ROOT,'expansion_calc','res','icon')
+ICON_FOLDER_PATH = os.path.join(PROJECT_ROOT,'expansion_calc','res','icon')
 icon_data_list = []
-for img_path in sorted(futsu.fs.find_file(icon_folder_path)):
-    fn = os.path.relpath(img_path,icon_folder_path)
+for img_path in sorted(futsu.fs.find_file(ICON_FOLDER_PATH)):
+    fn = os.path.relpath(img_path,ICON_FOLDER_PATH)
     icon_id = fn[:-4]
     icon_img = PIL.Image.open(img_path)
     icon_np_hwc = numpy.asarray(icon_img)
@@ -46,10 +49,9 @@ for img_path in sorted(futsu.fs.find_file(icon_folder_path)):
 
 box_data_list = []
 
-img_folder_path = os.path.join(PROJECT_ROOT,'expansion_calc','input')
 #icon_id = 0
-for img_path in sorted(futsu.fs.find_file(img_folder_path)):
-    fn = os.path.relpath(img_path,img_folder_path)
+for img_path in sorted(futsu.fs.find_file(IMG_FOLDER_PATH)):
+    fn = os.path.relpath(img_path,IMG_FOLDER_PATH)
     #print(fn)
 
     img_img = PIL.Image.open(img_path)
@@ -103,7 +105,8 @@ for img_path in sorted(futsu.fs.find_file(img_folder_path)):
             tmp_icon_id = icon_data['ICON_ID']
             tmp_np_hwc = icon_data['NP_HWC']
             icon_diff = tmp_np_hwc - v_np_hwc
-            icon_diff = numpy.absolute(icon_diff)
+            #icon_diff = numpy.absolute(icon_diff)
+            icon_diff = icon_diff * icon_diff
             icon_diff = numpy.sum(icon_diff)
             if icon_diff > min_diff: continue
             min_diff = icon_diff

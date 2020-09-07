@@ -20,6 +20,10 @@ res_data = futsu.json.path_to_data(res_data_path)
 expansion_data_list_fn = os.path.join(OUTPUT_FOLDER_PATH, 'expansion_data_list.csv')
 expansion_data_list = futsu.csv.read_csv(expansion_data_list_fn)[0]
 
+# check dup
+icon_id_set = set(map(lambda i:i['ICON_ID'],expansion_data_list))
+assert(len(icon_id_set)==len(expansion_data_list))
+
 expansion_calc_data_list = []
 for expansion_data in expansion_data_list:
     icon_id = expansion_data['ICON_ID']
@@ -63,12 +67,13 @@ for expansion_data in expansion_data_list:
         'LABEL':res_data['ICON_DATA_LIST'][icon_id_int]['LABEL']['ZH'],
         'LV':lv_txt,
         'LVUP':lvup_txt,
-        'EFFECT':effect
+        'EFFECT':effect,
+        'E':res_data['ICON_DATA_LIST'][icon_id_int]['EFFECT']
     })
 
 csv_path = os.path.join(OUTPUT_FOLDER_PATH,'expansion_calc_data_list.csv')
 futsu.csv.write_csv(
     csv_path, expansion_calc_data_list,
-    col_name_list = ['LABEL','EFFECT','LV','LVUP'],
+    col_name_list = ['LABEL','EFFECT','LV','LVUP','E'],
     sort_key_list = ['ICON_ID']
 )

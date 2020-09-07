@@ -6,7 +6,7 @@
         },
         {
             "LABEL":{"ZH":"飾品增幅器"},
-            "EFFECT":0
+            "EFFECT":1
         },
         {
             "LABEL":{"ZH":"魅力值增幅器"},
@@ -80,7 +80,7 @@
         },
         {
             "LABEL":{"ZH":"時裝驅動器"},
-            "EFFECT":7
+            "EFFECT":9
         },
         {
             "LABEL":{"ZH":"手部驅動器"},
@@ -92,12 +92,12 @@
         },
         {
             "LABEL":{"ZH":"裙子驅動器"},
-            "EFFECT":2
+            "EFFECT":3
         },
 
         {
             "LABEL":{"ZH":"風格驅動器"},
-            "EFFECT":1
+            "EFFECT":2
         },
         {
             "LABEL":{"ZH":"音色驅動器"},
@@ -159,7 +159,7 @@
         },
         {
             "LABEL":{"ZH":"FEVER等化器"},
-            "EFFECT":1
+            "EFFECT":2
         }
     ]
 }
